@@ -86,4 +86,4 @@ other_statement = (assignment_statement | declaration_statement | return_stateme
 
 statements = (construct_statement | other_statement)+ ;
 
-program : statements ;
+program : statements 
