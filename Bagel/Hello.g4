@@ -20,9 +20,9 @@ SUBTRACTION_OPERATOR : '-';
 MULTIPLICATION_OPERATORr : '*';
 DIVISION_OPERATOR : '/';
 
-CHARACTER : (letter | digit | symbol);
+CHARACTER : (LETTER | DIGIT | SYMBOL);
 
-IDENTIFIER : (letter , {letter | digit | '_' }) ;
+IDENTIFIER : (LETTER , {LETTER | DIGIT | '_' }) ;
 
 COMPARISON_KEYWORDS : ('Equals' | 'GreaterThan' | 'LessThan' | 'LessThanEqual' | 'GreaterThanEqual' | 'NotEqual') ;
 
