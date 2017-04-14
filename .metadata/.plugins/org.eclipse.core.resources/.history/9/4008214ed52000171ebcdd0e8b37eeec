@@ -1,0 +1,90 @@
+package org.bagel.test;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+
+public class myArrayHop {
+	public static final String HOP_FAILURE = "failure";
+
+	public static void main(String[] args) throws IOException {
+		//int[]arr = {5, 6, 0, 4, 2, 4, 1, 0, 0, 4};
+		
+		ArrayList<Integer> arr = new ArrayList<Integer>();
+		myArrayHop ah = new myArrayHop();
+		//int minJump = ah.findMinJumps(arr);
+		arr = ah.readFile("/custom4.txt");
+		//int minJump = ah.findMinJumps(arr);
+		String hoppingIndex = ah.findMinJumps(arr);
+		System.out.println(hoppingIndex);
+
+	}
+	
+	public static ArrayList<Integer> readFile(String filepath) throws IOException, NumberFormatException {
+
+		ArrayList<Integer> arr = new ArrayList<Integer>();
+		BufferedReader br = new BufferedReader(new FileReader(filepath));
+
+		while (br.ready()) {
+			String currentLine = br.readLine();
+			Integer i = Integer.parseInt(currentLine);
+			if (i >= 0)
+				arr.add(i);
+			else
+				throw new RuntimeException("Invalid Data - The input file should not contain negative integers");
+		}
+		if (br != null)
+			br.close();
+		return arr;
+	}
+
+	String findMinJumps(ArrayList<Integer> a) {
+		int []jump = new int[a.size()+1];
+		int last=0;
+		int current=0;
+		int ind=0, i;
+		ArrayList<String> list = new ArrayList<String>();
+		for(i=0;i<a.size();i++)
+		{
+			System.out.println("----------For Loop begins---------");
+			System.out.println("i: "+i);
+			System.out.println("Current: "+current);
+			System.out.println("Last: "+last);
+			if (i > current) break;
+			if (i > last) {
+				System.out.println("---------------Inside If Statement (i>last)--------------");
+				last = current;
+				list.add(String.valueOf(ind));
+				System.out.println("Last (inside if): "+last);
+				System.out.println("Temp list (inside if): "+list);
+			}
+			int sum = i + a.get(i);
+			System.out.println("Sum (i+a.get(i)): "+sum);
+			if (sum > current){
+				System.out.println("---------------Inside If Statement (sum>current)--------------");
+				ind = i;
+				System.out.println("Ind: "+ind);
+			}
+			current = Math.max(current, sum);
+			System.out.println("Compared current (current and sum): "+current);
+		}
+		if ((i > last) && (list.size() > 0) && (Integer.parseInt(list.get(list.size() - 1)) != ind)) {
+			list.add(String.valueOf(ind));
+		}
+		//else if((i==last)&&(a.get(i) == 0))
+			//return HOP_FAILURE;
+
+		if (!(last >= a.size() - 1) )   
+			list = null;
+		
+		if (list == null || list.size() == 0) {
+			return HOP_FAILURE;
+		} else {
+			list.add("out");
+			String result = list.toString();
+			return result.substring(1, result.length() - 1);
+		}
+		}
+
+}

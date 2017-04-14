@@ -1,3 +1,4 @@
+grammar Hello;
 
 DIGIT : '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' ;
 
@@ -11,9 +12,6 @@ LETTER : ('A' | 'B' | 'C' | 'D' | 'E' | 'F' | 'G'
        | 'x' | 'y' | 'z' );
 
 
-SYMBOL : ('['' | ']' | '<' | '>'
-       | ''' | ''' | '=' | '|' 
-       | '.' | ',' | ';' |'_');
 
 ADDITION_OPERATOR : '+';
 SUBTRACTION_OPERATOR : '-';
