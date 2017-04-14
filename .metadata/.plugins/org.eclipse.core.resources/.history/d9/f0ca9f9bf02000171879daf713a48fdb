@@ -1,4 +1,3 @@
-grammar Hello;
 
 DIGIT : '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' ;
 
@@ -12,9 +11,9 @@ LETTER : ('A' | 'B' | 'C' | 'D' | 'E' | 'F' | 'G'
        | 'x' | 'y' | 'z' );
 
 
-//SYMBOL : ('['' | ']' | '<' | '>'
-//       | ''' | ''' | '=' | '|' 
-//       | '.' | ',' | ';' |'_');
+SYMBOL : ('['' | ']' | '<' | '>'
+       | ''' | ''' | '=' | '|' 
+       | '.' | ',' | ';' |'_');
 
 ADDITION_OPERATOR : '+';
 SUBTRACTION_OPERATOR : '-';
@@ -22,8 +21,6 @@ MULTIPLICATION_OPERATORr : '*';
 DIVISION_OPERATOR : '/';
 
 CHARACTER : (LETTER | DIGIT | SYMBOL);
-SYMBOL: ;
-
 
 IDENTIFIER : (LETTER , {LETTER | DIGIT | '_' }) ;
 
@@ -55,9 +52,9 @@ DATATYPE : (Integer | Float | Boolean) ;
 
 INTEGER_LITERAL : (('+'|'-')? DIGIT+) ; 
 
-FLOAT_LITERAL : (('+'|'-')? DIGIT'.'DIGIT+)
+FLOAT LITERAL : (('+'|'-')? DIGIT'.'DIGIT+)
 
-OPERATOR : ADDITION_OPERATOR | SUBTRACTION_OPERATOR | MULTIPLICATION_OPERATOR | DIVISION_OPERATOR ;
+operator : ADDITION_OPERATOR | SUBTRACTION_OPERATOR | MULTIPLICATION_OPERATOR | DIVISION_OPERATOR ;
 
 declaration_statement : DATATYPE IDENTIFIER ;
 
