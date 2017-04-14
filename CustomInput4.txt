@@ -22,7 +22,7 @@ DIVISION_OPERATOR : '/';
 
 CHARACTER : (letter | digit | symbol);
 
-IDETIFIER : (letter , {letter | digit | '_' }) ;
+IDENTIFIER : (letter , {letter | digit | '_' }) ;
 
 COMPARISON_KEYWORDS : ('Equals' | 'GreaterThan' | 'LessThan' | 'LessThanEqual' | 'GreaterThanEqual' | 'NotEqual') ;
 
