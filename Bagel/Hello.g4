@@ -75,7 +75,7 @@ return_statement : RETURN_KEYWORD complex_expression ;
 
 while_loop : 'while' condition OPEN_BRACE statements CLOSE_BRACE ;
 
-if_statement: IF_KEYWORD OPEN_BRACE statements CLOSE_BRACE ;
+if_statement: IF_KEYWORD OPEN_BRACE statements CLOSE_BRACE (ELSEIF_KEYWORD OPEN_BRACE statements CLOSE_BRACE)* ;
 
 else_statement : ELSE_KEYWORD OPEN_BRACE statements CLOSE_BRACE ;
 
