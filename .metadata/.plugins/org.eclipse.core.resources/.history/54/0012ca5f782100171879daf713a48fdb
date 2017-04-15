@@ -12,9 +12,9 @@ LETTER : ('A' | 'B' | 'C' | 'D' | 'E' | 'F' | 'G'
        | 'x' | 'y' | 'z') ;
 
 
-SYMBOL : ('['' | ']' | '<' | '>'
-       | ''' | ''' | '=' | '|' 
-       | '.' | ',' | ';' |'_');
+//SYMBOL : ('['' | ']' | '<' | '>'
+//       | ''' | ''' | '=' | '|' 
+//       | '.' | ',' | ';' |'_');
 
 ADDITION_OPERATOR : '+';
 SUBTRACTION_OPERATOR : '-';
@@ -22,7 +22,7 @@ MULTIPLICATION_OPERATOR : '*';
 DIVISION_OPERATOR : '/';
 
 CHARACTER : (LETTER | DIGIT | SYMBOL);
-//SYMBOL: ;
+SYMBOL: ;
 
 
 IDENTIFIER : (LETTER) ({LETTER | DIGIT | '_' })* ;
