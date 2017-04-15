@@ -1,3 +1,4 @@
+grammar Hello;
 
 DIGIT : '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' ;
 
@@ -8,7 +9,7 @@ LETTER : ('A' | 'B' | 'C' | 'D' | 'E' | 'F' | 'G'
        | 'c' | 'd' | 'e' | 'f' | 'g' | 'h' | 'i'
        | 'j' | 'k' | 'l' | 'm' | 'n' | 'o' | 'p'
        | 'q' | 'r' | 's' | 't' | 'u' | 'v' | 'w'
-       | 'x' | 'y' | 'z' );
+       | 'x' | 'y' | 'z') ;
 
 
 SYMBOL : ('['' | ']' | '<' | '>'
@@ -17,12 +18,14 @@ SYMBOL : ('['' | ']' | '<' | '>'
 
 ADDITION_OPERATOR : '+';
 SUBTRACTION_OPERATOR : '-';
-MULTIPLICATION_OPERATORr : '*';
+MULTIPLICATION_OPERATOR : '*';
 DIVISION_OPERATOR : '/';
 
 CHARACTER : (LETTER | DIGIT | SYMBOL);
+//SYMBOL: ;
 
-IDENTIFIER : (LETTER , {LETTER | DIGIT | '_' })+ ;
+
+IDENTIFIER : (LETTER) ({LETTER | DIGIT | '_' })* ;
 
 COMPARISON_KEYWORDS : ('Equals' | 'GreaterThan' | 'LessThan' | 'LessThanEqual' | 'GreaterThanEqual' | 'NotEqual') ;
 
@@ -34,7 +37,7 @@ IF_KEYWORD : 'if' ;
 THEN_KEYWORD : 'then' ;
 ELSE_KEYWORD : 'else' ;
 ELSEIF_KEYWORD : 'elif' ;
-RETURN_KEYWORD : return ;
+RETURN_KEYWORD : 'return' ;
 
 OPEN_BRACE : '{' ;
 CLOSE_BRACE : '}' ;
@@ -48,13 +51,13 @@ LOGICAL_KEYWORDS : ('AND' | 'OR' | 'NOT') ;
 
 BOOLEAN_KEYWORDS : ('true' | 'false') ;
 
-DATATYPE : (Integer | Float | Boolean) ;
+DATATYPE : ('Integer' | 'Float' | 'Boolean') ;
 
 INTEGER_LITERAL : (('+'|'-')? DIGIT+) ; 
 
-FLOAT LITERAL : (('+'|'-')? DIGIT'.'DIGIT+)
+FLOAT_LITERAL : (('+'|'-')? DIGIT'.'DIGIT+);
 
-operator : ADDITION_OPERATOR | SUBTRACTION_OPERATOR | MULTIPLICATION_OPERATOR | DIVISION_OPERATOR ;
+operator : (ADDITION_OPERATOR | SUBTRACTION_OPERATOR | MULTIPLICATION_OPERATOR | DIVISION_OPERATOR);
 
 declaration_statement : DATATYPE IDENTIFIER ;
 
@@ -80,10 +83,10 @@ ifelse_statement : if_statement (else_statement)? ;
 
 construct_statement : (ifelse_statement | while_loop) ;
 
-assignment_statement = IDENTIFIER ASSIGNMENT_KEYWORD complex_expression ;
+assignment_statement : IDENTIFIER ASSIGNMENT_KEYWORD complex_expression ;
 
-other_statement = (assignment_statement | declaration_statement | return_statement)? ';' ;
+other_statement : (assignment_statement | declaration_statement | return_statement)? ';' ;
 
-statements = (construct_statement | other_statement)+ ;
+statements : (construct_statement | other_statement)+ ;
 
 program : statements ;
