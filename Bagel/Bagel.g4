@@ -16,6 +16,7 @@ SYMBOL : ('[' | ']' | '<' | '>'
         '=' | '|' 
        | '.' | ',' | ';' |'_');
 
+
 ADDITION_OPERATOR : '+';
 SUBTRACTION_OPERATOR : '-';
 MULTIPLICATION_OPERATOR : '*';
