@@ -88,7 +88,7 @@ construct_statement : (ifelse_statement | while_loop) ;	//if a GreaterThan b { w
 
 assignment_statement : identifier (' ')? ASSIGNMENT_KEYWORD (' ')? complex_expression ; //a is 5
 
-other_statement : (assignment_statement | declaration_statement | return_statement) ;
+other_statement : (assignment_statement | declaration_statement | return_statement | basic_expression | term) ;
 
 statements : (construct_statement | other_statement)* ';' ;
 
