@@ -1,0 +1,6 @@
+Integer a
+Integer b
+a is 5
+b is 6
+c is a+b
+Print c;

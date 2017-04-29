@@ -5,3 +5,9 @@
 /HelloListener.java
 /HelloParser.java
 /BagelMain.java
+/Bagel.tokens
+/BagelBaseListener.java
+/BagelListener.java
+/BagelParser.java
+/BagelLexer.java
+/BagelLexer.tokens
