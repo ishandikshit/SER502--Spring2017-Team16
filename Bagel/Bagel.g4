@@ -64,7 +64,7 @@ operator : (ADDITION_OPERATOR | SUBTRACTION_OPERATOR | MULTIPLICATION_OPERATOR |
 
 declaration_statement : DATATYPE ' ' identifier ; 		//Integer a
 
-term : integer_literal | float_literal |identifier ;	//3, 3.0, a
+term : integer_literal | float_literal | identifier ;	//3, 3.0, a
 
 basic_expression : term | (term (' ')?operator(' ')? term) ;	//3+4
 
@@ -78,12 +78,12 @@ return_statement : PRINT_KEYWORD (' ')? complex_expression ; //return a
 
 while_loop : (WHILE_KEYWORD (' ')? condition (' ')? OPEN_BRACE (' ')? statements (' ')? CLOSE_BRACE) ; //while a LessThan 5 { a is 2; }
 
-if_statement: IF_KEYWORD (' ')? condition (' ')? OPEN_BRACE (' ')? statements (' ')? CLOSE_BRACE ((' ')? ELSEIF_KEYWORD (' ')? OPEN_BRACE (' ')? statements (' ')? CLOSE_BRACE)? ; 
+if_statement: IF_KEYWORD (' ')? condition (' ')? OPEN_BRACE (' ')? statements (' ')? CLOSE_BRACE ((' ')? ); 
 //if a GreaterThan b { a is 2; }
 
 else_statement : (ELSE_KEYWORD (' ') OPEN_BRACE (' ') statements (' ') CLOSE_BRACE) ; //else { a is 3; }
 
-ifelse_statement : if_statement (else_statement)? ; //if a GreaterThan b { a is 2; } elif { b is 4; }
+ifelse_statement : if_statement ((' ')? else_statement(' ')?)? ; //if a GreaterThan b { a is 2; } elif { b is 4; }
 
 construct_statement : (ifelse_statement | while_loop) ;	//if a GreaterThan b { while a LessThan 5 { a is 2; }; } elif { b is 4; }
 
@@ -94,3 +94,4 @@ other_statement : (assignment_statement | declaration_statement | return_stateme
 statements : ((construct_statement | other_statement) (' ')? ('\n')?)* ';' ;
 
 program : statements;	//Integer a 
+
