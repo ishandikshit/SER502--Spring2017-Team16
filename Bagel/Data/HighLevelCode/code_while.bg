@@ -1,0 +1,4 @@
+Integer a
+a is 2
+while 
+a LessThanEqual 5 { print a a is a + 2; };
