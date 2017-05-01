@@ -16,7 +16,7 @@ SYMBOL : ('[' | ']' | '<' | '>'
         '=' | '|' 
        | '.' | ',' | ';' |'_');
 
-
+QUOTE : '"';
 ADDITION_OPERATOR : '+';
 SUBTRACTION_OPERATOR : '-';
 MULTIPLICATION_OPERATOR : '*';
@@ -27,12 +27,13 @@ character : (LETTER | DIGIT | SYMBOL);
 
 
 identifier : (LETTER) (LETTER)*;  //CHANGE NEEDED
+//sentence : identifier (WHITESPACE identifier)?; //Hello World
 
 COMPARISON_KEYWORDS : ('Equals' | 'GreaterThan' | 'LessThan' | 'LessThanEqual' | 'GreaterThanEqual' | 'NotEqual') ;
 
 ASSIGNMENT_KEYWORD : 'is' ;
 
-WHITESPACE : (' ' | '\t' | '\r' | '\n' | '\f') ;
+WHITESPACE : ('\\u0020' | '\t' | '\r' | '\n' | '\f') ;
 
 IF_KEYWORD : 'if' ;
 THEN_KEYWORD : 'then' ;
@@ -47,8 +48,6 @@ CLOSE_BRACE : '}' ;
 OPEN_BRACKET : '(' ;
 CLOSE_BRACKET : ')' ;
 
-//Future Work
-//FUNCTION_KEYWORD : 'Function' ;
 
 LOGICAL_KEYWORDS : ('AND' | 'OR' | 'NOT') ;
 
@@ -56,42 +55,41 @@ BOOLEAN_KEYWORDS : ('true' | 'false') ;
 
 DATATYPE : ('Integer' | 'Float' | 'Boolean') ;
 
-integer_literal : (('+'|'-')? DIGIT+) ; 		//3
+integer_literal : (('+'|'-')? DIGIT+) ; 		
 
-float_literal : (('+'|'-')? DIGIT'.'DIGIT+);		//+6.0
+float_literal : (('+'|'-')? DIGIT'.'DIGIT+);		
 
-operator : (ADDITION_OPERATOR | SUBTRACTION_OPERATOR | MULTIPLICATION_OPERATOR | DIVISION_OPERATOR);		//+, -, /, *
+operator : (ADDITION_OPERATOR | SUBTRACTION_OPERATOR | MULTIPLICATION_OPERATOR | DIVISION_OPERATOR);		
 
-declaration_statement : DATATYPE ' ' identifier ; 		//Integer a
+declaration_statement : DATATYPE ' ' identifier ; 		
 
-term : integer_literal | float_literal | identifier ;	//3, 3.0, a
+term : integer_literal | float_literal | identifier | BOOLEAN_KEYWORDS ;	
 
-basic_expression : term | (term (' ')?operator(' ')? term) ;	//3+4
+basic_expression : term | (term (' ')?('\n')?operator(' ')?('\n')? term) ;	
 
-relational_expression : (basic_expression (' ')? COMPARISON_KEYWORDS (' ')? basic_expression) ;	//3 GreaterThan 1
+relational_expression : (basic_expression (' ')?('\n')? COMPARISON_KEYWORDS (' ')?('\n')? basic_expression) ;	
 
-complex_expression : basic_expression |relational_expression | (relational_expression (' ')? LOGICAL_KEYWORDS (' ')? relational_expression) ; //3 LessThan 5 AND 10 GreaterThan 5
+complex_expression : basic_expression |relational_expression  ; 
 
-condition : complex_expression ; //3 LessThan 5 AND 10 GreaterThan 5
+condition : complex_expression ; 
 
-return_statement : PRINT_KEYWORD (' ')? complex_expression ; //return a
+return_statement : PRINT_KEYWORD (' ')? (QUOTE)? complex_expression (QUOTE)?; 
 
-while_loop : (WHILE_KEYWORD (' ')? condition (' ')? OPEN_BRACE (' ')? statements (' ')? CLOSE_BRACE) ; //while a LessThan 5 { a is 2; }
+while_loop : (WHILE_KEYWORD (' ')? condition (' ')? OPEN_BRACE (' ')? statements (' ')? CLOSE_BRACE) ; 
 
-if_statement: IF_KEYWORD (' ')? condition (' ')? OPEN_BRACE (' ')? statements (' ')? CLOSE_BRACE ((' ')? ); 
-//if a GreaterThan b { a is 2; }
+if_statement: IF_KEYWORD (' ')?('\n')? condition (' ')?('\n')? OPEN_BRACE (' ')?('\n')? statements (' ')?('\n')? CLOSE_BRACE ((' ')?('\n')? ); 
 
-else_statement : (ELSE_KEYWORD (' ') OPEN_BRACE (' ') statements (' ') CLOSE_BRACE) ; //else { a is 3; }
+else_statement : (ELSE_KEYWORD (' ')?('\n')? OPEN_BRACE (' ')?('\n')? statements (' ')?('\n')? CLOSE_BRACE) ; 
 
-ifelse_statement : if_statement ((' ')? else_statement(' ')?)? ; //if a GreaterThan b { a is 2; } elif { b is 4; }
+ifelse_statement : if_statement ((' ')?('\n')? else_statement(' ')?('\n')?)? ; 
 
-construct_statement : (ifelse_statement | while_loop) ;	//if a GreaterThan b { while a LessThan 5 { a is 2; }; } elif { b is 4; }
+construct_statement : (ifelse_statement | while_loop) ;	
 
-assignment_statement : term (' ')? ASSIGNMENT_KEYWORD (' ')? complex_expression ; //a is 5
+assignment_statement : term (' ')?('\n')? ASSIGNMENT_KEYWORD (' ')?('\n')? complex_expression ; 
 
 other_statement : (assignment_statement | declaration_statement | return_statement | basic_expression | term | relational_expression) ;
 
 statements : ((construct_statement | other_statement) (' ')? ('\n')?)* ';' ;
 
-program : statements;	//Integer a 
+program : statements;	
 
