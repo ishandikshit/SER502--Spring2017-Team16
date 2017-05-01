@@ -1,0 +1,7 @@
+Integer a
+Integer b
+Integer c
+a is 15
+b is 6
+c is a-b
+print c;
