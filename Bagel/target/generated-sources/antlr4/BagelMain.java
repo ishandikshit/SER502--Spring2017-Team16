@@ -14,7 +14,7 @@ public class BagelMain {
 
 		// FileInputStream fis = new FileInputStream(args[0]);
 		String currDIr = System.getProperty("user.dir");
-		FileInputStream fis = new FileInputStream(currDIr + "/Samples/BagelCode/code_add.bg");
+		FileInputStream fis = new FileInputStream(currDIr + "/Samples/BagelCode/"+args[0]);
 		BufferedReader br = new BufferedReader(new InputStreamReader(fis, "UTF-8"));
 		// System.out.println("-----------CODE STsART-----------");
 		String line = "";
