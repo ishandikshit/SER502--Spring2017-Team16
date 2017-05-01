@@ -1,0 +1,12 @@
+DECLARE Integer a
+DECLARE Integer b
+DECLARE Integer c
+STORE 18
+PUSH a
+STORE 6
+PUSH b
+GET a
+GET b
+OPERATOR /
+PUSH c
+PRINT c
