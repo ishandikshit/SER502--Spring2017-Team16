@@ -75,7 +75,7 @@ condition : complex_expression ;
 
 return_statement : PRINT_KEYWORD (' ')? (QUOTE)? complex_expression (QUOTE)?; 
 
-while_loop : (WHILE_KEYWORD (' ')? condition (' ')? OPEN_BRACE (' ')? statements (' ')? CLOSE_BRACE) ; 
+while_loop : (WHILE_KEYWORD (' ')?('\n')? condition (' ')?('\n')? OPEN_BRACE (' ')?('\n')? statements (' ')?('\n')? CLOSE_BRACE) ; 
 
 if_statement: IF_KEYWORD (' ')?('\n')? condition (' ')?('\n')? OPEN_BRACE (' ')?('\n')? statements (' ')?('\n')? CLOSE_BRACE ((' ')?('\n')? ); 
 
@@ -92,4 +92,3 @@ other_statement : (assignment_statement | declaration_statement | return_stateme
 statements : ((construct_statement | other_statement) (' ')? ('\n')?)* ';' ;
 
 program : statements;	
-
