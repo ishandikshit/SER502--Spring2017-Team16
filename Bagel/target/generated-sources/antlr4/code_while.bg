@@ -1,4 +1,0 @@
-Integer a
-a is 4
-while a LessThan 5 { a is a + 2; }
-print done;
