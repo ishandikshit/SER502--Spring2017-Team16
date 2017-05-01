@@ -41,8 +41,7 @@ public class NewBagelListener extends BagelBaseListener {
 	@Override
 	public void exitIdentifier(BagelParser.IdentifierContext ctx) {
 		// TODO Auto-generated method stub
-		System.out.println(ctx.LETTER().get(0).getText());
-		// icStack.push(ctx.LETTER().get(0).getText());
+		
 		super.exitIdentifier(ctx);
 	}
 
@@ -95,8 +94,7 @@ public class NewBagelListener extends BagelBaseListener {
 	@Override
 	public void exitDeclaration_statement(BagelParser.Declaration_statementContext ctx) {
 		// TODO Auto-generated method stub
-		System.out.println("Data Type : " + ctx.DATATYPE().getText());
-		System.out.println("Identifier : " + ctx.identifier().getText());
+		
 		icStack.push("DECLARE " + ctx.DATATYPE().getText() + " " + ctx.identifier().getText());
 		super.exitDeclaration_statement(ctx);
 	}
@@ -125,8 +123,7 @@ public class NewBagelListener extends BagelBaseListener {
 	@Override
 	public void exitBasic_expression(BagelParser.Basic_expressionContext ctx) {
 		// TODO Auto-generated method stub
-		System.out.println("Basic Expression Started");
-		System.out.println("Term : " + ctx.term().get(0).getText());
+		
 		if (flag == 0) {
 			for (int i = 0; i < ctx.term().size(); i++) {
 				if (ctx.term().get(i).identifier() != null)
@@ -138,7 +135,7 @@ public class NewBagelListener extends BagelBaseListener {
 			if (ctx.operator() != null)
 				icStack.push("OPERATOR " + ctx.operator().getText());
 		}
-		System.out.println("Basic Expression Ends");
+		
 		super.exitBasic_expression(ctx);
 	}
 
@@ -153,8 +150,8 @@ public class NewBagelListener extends BagelBaseListener {
 	public void exitRelational_expression(BagelParser.Relational_expressionContext ctx) {
 		// TODO Auto-generated method stub
 
-		System.out.println("Comparison Keyword : " + ctx.COMPARISON_KEYWORDS().getText());
-		icStack.push("COMPARE "+ ctx.COMPARISON_KEYWORDS().getText());
+		
+		icStack.push("COMPARE " + ctx.COMPARISON_KEYWORDS().getText());
 
 		super.exitRelational_expression(ctx);
 	}
@@ -170,10 +167,7 @@ public class NewBagelListener extends BagelBaseListener {
 	public void exitComplex_expression(BagelParser.Complex_expressionContext ctx) {
 		// TODO Auto-generated method stub
 
-		if (ctx.LOGICAL_KEYWORDS() != null) {
-			System.out.println("Logical Keyword : " + ctx.LOGICAL_KEYWORDS().getText());
-			// icStack.push(ctx.LOGICAL_KEYWORDS().getText());
-		}
+		
 		super.exitComplex_expression(ctx);
 	}
 
@@ -203,27 +197,26 @@ public class NewBagelListener extends BagelBaseListener {
 	public void exitReturn_statement(BagelParser.Return_statementContext ctx) {
 		// TODO Auto-generated method stub
 		flag = 0;
-		System.out.println(ctx.PRINT_KEYWORD().getText());
-		icStack.push("PRINT " + ctx.complex_expression().getText());
+		
+		String q = "";
+		if (!(ctx.QUOTE().isEmpty()))
+			q = "\"";
+		icStack.push("PRINT " + q + ctx.complex_expression().getText() + q);
 		super.exitReturn_statement(ctx);
 	}
 
 	@Override
 	public void enterWhile_loop(BagelParser.While_loopContext ctx) {
 		// TODO Auto-generated method stub
-		//icStack.push("WHILESCOPEBEGIN");
+		icStack.push("WHILESCOPEBEGIN");
 		super.enterWhile_loop(ctx);
 	}
 
 	@Override
 	public void exitWhile_loop(BagelParser.While_loopContext ctx) {
 		// TODO Auto-generated method stub
-		System.out.println("WHILE KEYWORD" + ctx.WHILE_KEYWORD().getText());
-		//icStack.push(ctx.WHILE_KEYWORD().getText());
-		System.out.println("OPEN BRACE" + ctx.OPEN_BRACE().getText());
-		//icStack.push(ctx.OPEN_BRACE().getText());
-		System.out.println("CLOSE BRACE" + ctx.CLOSE_BRACE().getText());
-		//icStack.push(ctx.CLOSE_BRACE().getText());
+		
+		icStack.push("JUMPBACK WHILESCOPEBEGIN");
 		icStack.push("SCOPEEND");
 		icStack.push("LABELELSE");
 		super.exitWhile_loop(ctx);
@@ -236,32 +229,13 @@ public class NewBagelListener extends BagelBaseListener {
 		super.enterIf_statement(ctx);
 	}
 
-	// IF_KEYWORD (' ')? condition (' ')? OPEN_BRACE (' ')? statements (' ')?
-	// CLOSE_BRACE ((' ')? ELSEIF_KEYWORD (' ')? OPEN_BRACE (' ')? statements ('
-	// ')? CLOSE_BRACE)?
+	
 	@Override
 	public void exitIf_statement(BagelParser.If_statementContext ctx) {
 		// TODO Auto-generated method stub
 		icStack.push("IFSCOPEEND");
 		icStack.push("JUMP ELSESCOPEEND");
-		// System.out.println("IF KEYWORD" + ctx.IF_KEYWORD().getText());
-		// // icStack.push(ctx.IF_KEYWORD().getText());
-		// System.out.println("OPEN BRACE" + ctx.OPEN_BRACE().get(0).getText());
-		// // icStack.push(ctx.OPEN_BRACE().get(0).getText());
-		// System.out.println("CLOSE BRACE" +
-		// ctx.CLOSE_BRACE().get(0).getText());
-		// // icStack.push(ctx.CLOSE_BRACE().get(0).getText());
-		// if (ctx.ELSEIF_KEYWORD() != null) {
-		// System.out.println("ELSEIF KEYWORD" +
-		// ctx.ELSEIF_KEYWORD().getText());
-		// // icStack.push(ctx.ELSEIF_KEYWORD().getText());
-		// System.out.println("OPEN BRACE" + ctx.OPEN_BRACE().get(1).getText());
-		// // icStack.push(ctx.OPEN_BRACE().get(1).getText());
-		// System.out.println("CLOSE BRACE" +
-		// ctx.CLOSE_BRACE().get(1).getText());
-		// // icStack.push(ctx.CLOSE_BRACE().get(1).getText());
-
-		// }
+		
 		super.exitIf_statement(ctx);
 	}
 
@@ -318,11 +292,9 @@ public class NewBagelListener extends BagelBaseListener {
 	@Override
 	public void exitAssignment_statement(BagelParser.Assignment_statementContext ctx) {
 		// TODO Auto-generated method stub
-		System.out.println("ASSIGNMENT OPERATOR : " + ctx.ASSIGNMENT_KEYWORD().getText());
-		// icStack.push(ctx.ASSIGNMENT_KEYWORD().getText());
+		
 		icStack.push("PUSH " + ctx.term().identifier().getText());
-		// icStack.push("STORE " +
-		// ctx.complex_expression().basic_expression().getText());
+		
 		super.exitAssignment_statement(ctx);
 	}
 
@@ -357,20 +329,17 @@ public class NewBagelListener extends BagelBaseListener {
 	@Override
 	public void enterProgram(BagelParser.ProgramContext ctx) {
 		// TODO Auto-generated method stub
-		System.out.println("Inside enterProgram()");
+		
 	}
 
 	@Override
 	public void exitProgram(BagelParser.ProgramContext ctx) {
-		// TODO Auto-generated method stub
-		System.out.println("Inside exitProgram()");
-		System.out.println(sbuild);
-		System.out.println(icStack.toString());
+		
 
 		try {
-			PrintWriter pw = new PrintWriter(
-					"/Users/ishandikshit/ser_new/SER502--Spring2017-Team16/Bagel/target/generated-sources/antlr4/IntermediateCode.bgi",
-					"UTF-8");
+			String currDIr = System.getProperty("user.dir");
+			String fileName = currDIr + "/Samples/IntermediateCode/IntermediateCode.bgi";
+			PrintWriter pw = new PrintWriter(fileName, "UTF-8");
 			ArrayList<String> a = new ArrayList<>();
 			while (!(icStack.isEmpty())) {
 				// System.out.println("Stack pop : "+icStack.pop());
