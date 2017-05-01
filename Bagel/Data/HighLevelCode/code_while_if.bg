@@ -1,0 +1,7 @@
+Integer a
+Integer b
+a is 4
+b is 3
+while 
+a LessThanEqual 5 
+{ if a GreaterThan b { print "AGreater" a is a + 2; } else { print "ASmaller" a is a + 2; };};
