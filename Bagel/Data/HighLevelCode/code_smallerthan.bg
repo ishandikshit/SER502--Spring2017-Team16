@@ -1,0 +1,9 @@
+Integer a
+Integer b
+a is 10
+b is 5
+if 
+a LessThan b 
+{ print "ASmaller"; } 
+else 
+{ print "BSmaller"; };
