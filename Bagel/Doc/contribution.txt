@@ -20,4 +20,6 @@ Milestone 3:
 
 Final Work Done:
 
-Sanchit worked on updating the grammar according to the changes needed and Intermediate code generation. Ishan worked on Intermediate code generation and runtime. Sonali worked on Run time and documentation(PPT).
+- Sanchit worked on updating the grammar according to the changes needed and Intermediate code generation. 
+- Ishan worked on Intermediate code generation and runtime. 
+- Sonali worked on Run time and documentation(PPT).
