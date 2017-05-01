@@ -1,6 +1,0 @@
-Integer a
-Integer b
-a is 20
-b is 10
-if a GreaterThan b { a is 2; } else { b is 4; };
-
