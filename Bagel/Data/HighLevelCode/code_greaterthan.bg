@@ -4,6 +4,6 @@ a is 10
 b is 5
 if 
 a GreaterThan b 
-{ print "AisGreater"; }
+{ print "AGreater"; }
 else 
-{ print "BisGreater"; };
+{ print "BGreater"; };
