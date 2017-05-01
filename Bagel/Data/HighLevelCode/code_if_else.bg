@@ -1,0 +1,9 @@
+Integer a
+Integer b
+a is 10
+b is 5
+if 
+a GreaterThan b
+{ print "InsideIf" a is 2; } 
+else 
+{ print "InsideElse" b is 4; };
