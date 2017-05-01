@@ -1,0 +1,13 @@
+Boolean a
+Integer c
+c is 10
+if 
+c Equals 9
+{
+a is True;
+}
+else
+{
+a is False;
+}
+print a;
