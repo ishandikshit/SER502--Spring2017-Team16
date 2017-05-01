@@ -1,0 +1,23 @@
+Name Of Grammar: BAGEL
+Team Number: 16
+Team Members: Ishan Dikshit, Sanchit Narang, Sonali Umesh
+
+Milestone 1: GitHub private repository was created by Ishaan Dikshit.
+
+Milestone 2: All the three of us discussed what our grammar would like and decided to write our grammar in EBNF first and later convert it to .g4 to use it with Antlr
+
+Ishaan - 1. Research on Antlr, Installation of Antlr and running code on Antlr
+
+Sanchit - Designing the grammar.
+
+Sonali - Research on Antlr and Installation and working with Antlr and documentation.
+
+Division of work for Final Milestone:
+
+Ishan and Sanchit will be working on Run time environment and integration. Sonali will be working on Intermediate Code generation.
+
+Milestone 3:
+
+Final Work Done:
+
+Sanchit worked on updating the grammar according to the changes needed and Intermediate code generation. Ishan worked on Intermediate code generation and runtime. Sonali worked on Run time and documentation(PPT).
