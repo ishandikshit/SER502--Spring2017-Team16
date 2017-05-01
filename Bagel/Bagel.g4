@@ -23,17 +23,15 @@ MULTIPLICATION_OPERATOR : '*';
 DIVISION_OPERATOR : '/';
 
 character : (LETTER | DIGIT | SYMBOL);
-//SYMBOL: ;
 
 
-identifier : (LETTER) (LETTER)*;  //CHANGE NEEDED
-//sentence : identifier (WHITESPACE identifier)?; //Hello World
+identifier : (LETTER) (LETTER)*; 
 
 COMPARISON_KEYWORDS : ('Equals' | 'GreaterThan' | 'LessThan' | 'LessThanEqual' | 'GreaterThanEqual' | 'NotEqual') ;
 
 ASSIGNMENT_KEYWORD : 'is' ;
 
-WHITESPACE : ('\\u0020' | '\t' | '\r' | '\n' | '\f') ;
+WHITESPACE : (' ' | '\t' | '\r' | '\n' | '\f') ;
 
 IF_KEYWORD : 'if' ;
 THEN_KEYWORD : 'then' ;
